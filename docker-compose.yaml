@@ -1,0 +1,49 @@
+services:
+  api-gateway:
+    build:
+      context: ./api-gateway
+    ports:
+      - "8080:8080"
+    networks:
+      - food-delivery-net
+    entrypoint: ["sh","-c","java -jar /app/app.jar"]
+
+  order-service:
+    build:
+      context: ./order-service
+    ports:
+      - "8081:8081"
+    networks:
+      - food-delivery-net
+    entrypoint: ["sh","-c","java -jar /app/app.jar"]
+
+  customer-service:
+    build:
+      context: ./customer-service
+    ports:
+      - "8082:8082"
+    networks:
+      - food-delivery-net
+    entrypoint: ["sh","-c","java -jar /app/app.jar"]
+
+  restaurant-service:
+    build:
+      context: ./restaurant-service
+    ports:
+      - "8083:8083"
+    networks:
+      - food-delivery-net
+    entrypoint: ["sh","-c","java -jar /app/app.jar"]
+
+  delivery-service:
+    build:
+      context: ./delivery-service
+    ports:
+      - "8084:8084"
+    networks:
+      - food-delivery-net
+    entrypoint: ["sh","-c","java -jar /app/app.jar"]
+
+networks:
+  food-delivery-net:
+    driver: bridge
